@@ -1,0 +1,10 @@
+__pycache__/
+.vscode/
+venv/
+db.sqlite3
+
+
+
+(djangoPy3Env) books_authors > git init
+(djangoPy3Env) books_authors> git add --all
+(djangoPy3Env) books_authors> git commit -m "initial commit"

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Display</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container"> 
+        <div class="add_form">
+            <h1 class="author_page_title">{{author.first_name}} {{author.last_name}}</h1>
+            <h2>{{author.notes}}</h2>
+            <h2 class="author_books">Books</h2>
+            {% for book in authors_books %}
+            <h3>{{book.title}}</h3>
+            {% endfor %}
+            <form action="assign_book" method="POST">
+                <input type="hidden" name="author_id" value="{{author.id}}">
+                {% csrf_token %}
+                <select name="books">
+                    {% for book in all_books%}
+                    <option value='{{book.id}}'>{{book.title}}</option>
+                    {%endfor%}
+                </select>
+                <button>Submit</button>
+            </form>
+        </div>
+    </div>
+        <a href="/author">Back to Authors</a>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container"> 
+        <div class="add_form">
+            <h1>Add a Author</h1>
+            <form class="form" action="add_author" method="POST">
+                {% csrf_token %}
+                <p>First Name:<input type="text" name='first_name'></p>
+                <p>Last Name: <input type="text" name='last_name'></p>
+                <p>Notes: <input type="text" name='notes'></p>
+                <button id="button">Add Author</button>
+            </form>
+        </div>
+        <div class="display_info">
+            <table id="table_head">
+                <tbody>
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>Info</td>
+                    </tr>
+                    {% for author in display_author%}
+                    <tr class="table">
+                        <td>{{author.id}}</td>
+                        <td>{{author.first_name}} {{author.last_name}} </td>
+                        <td><a href="/author/{{author.id}}">view info</a></td>
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>    
+    <a href="/">Back to books</a>
+</body>
+</html>
